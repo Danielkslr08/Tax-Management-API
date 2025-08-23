@@ -15,7 +15,7 @@ const JWT_SECRET = process.env.JWT_SECRET || "supersecretkey";
 
 // -------------------- POSTGRESQL CONNECTION --------------------
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: 'postgresql://postgres:DanielKessler2008!@db.taqaztieujyshpmzzejw.supabase.co:5432/postgres',
   ssl: { rejectUnauthorized: false },
 });
 
