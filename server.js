@@ -146,12 +146,12 @@ app.get('/api/properties/names', async (req, res) => {
 // Add property
 app.post('/api/properties', async (req, res) => {
   try {
-    const { name, distance, address, propertytype } = req.body.newCard;
+    const { name, distance, address, propertyType } = req.body.newCard;
     const result = await pool.query(
       'INSERT INTO properties (user_id, name, distance, address, propertytype) VALUES ($1,$2,$3,$4,$5) RETURNING id',
-      [req.user.id, name, distance, address, propertytype]
+      [req.user.id, name, distance, address, propertyType]
     );
-    res.json({ id: result.rows[0].id, user_id: req.user.id, name, distance, address, propertytype });
+    res.json({ id: result.rows[0].id, user_id: req.user.id, name, distance, address, propertyType });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -160,10 +160,10 @@ app.post('/api/properties', async (req, res) => {
 // Update property
 app.put('/api/properties/:propertyId', async (req, res) => {
   try {
-    const { name, distance, address, propertytype } = req.body;
+    const { name, distance, address, propertyType } = req.body;
     await pool.query(
       'UPDATE properties SET name=$1, distance=$2, address=$3, propertytype=$4 WHERE id=$5',
-      [name, distance, address, propertytype, Number(req.params.propertyId)]
+      [name, distance, address, propertyType, Number(req.params.propertyId)]
     );
     res.json({ success: true });
   } catch (err) {
